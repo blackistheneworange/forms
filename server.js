@@ -2,6 +2,7 @@ var express=require('express');
 var bodyParser=require('body-parser');
 var morgan=require('morgan');
 var path=require('path');
+process.env.PWD=process.cwd();
 var mongoose=require('mongoose');
 var debug=require('debug');
 var cookieParser=require('cookie-parser');
@@ -34,8 +35,8 @@ var auth=require('./routes/authRouter');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-app.use(express.static('public'));
-app.use('/images',express.static('public/images'))
+app.use(express.static(path.join(process.env.PWD,'public')));
+//app.use('/images',express.static('public/images'))
 //app.use(upload.array());
 app.use(session({secret:'test',resave:true,saveUninitialized:false}))
 app.use(cookieParser());
