@@ -35,6 +35,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
+app.use('/images',express.static('public/images'))
 //app.use(upload.array());
 app.use(session({secret:'test',resave:true,saveUninitialized:false}))
 app.use(cookieParser());
