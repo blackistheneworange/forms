@@ -91,15 +91,17 @@ if(ext===null){
           
           var formData=new FormData();
           formData.append('proof',proof.files[0])
+          
        
           
           $.ajax({
             method:'POST',
             url:'/upload',
+            
             data:formData,
-            cache:false,
-            processData:false,
-            contentType:false,
+           cache:false,
+           processData:false,
+           contentType:false,
             success:function(res){
               fileUploaded=true;
               document.querySelector(".proof").style.display="none";

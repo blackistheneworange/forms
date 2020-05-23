@@ -15,7 +15,17 @@ const storage=multer.diskStorage({
   },
   filename:(req,file,cb)=>{
     
-    cb(null,file.originalname);
+    var alteredName="";
+    var imgCount=config.imageCount;
+    
+      alteredName=imgCount.toString();
+      config.imageCount++;
+    
+    
+    
+    var ext=file.mimetype.split('/')[1];
+    
+    cb(null,"form"+alteredName+`.${ext}`);
   }
   
   
@@ -250,7 +260,8 @@ router.route('/upload')
    .post(upload.single('proof'),(req,res)=>{
      
      
-     res.send({fileName:'images/'+req.file.originalname});
+     
+     res.send({fileName:'/images/'+req.file.filename});
      
    })
    

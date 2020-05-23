@@ -1,6 +1,6 @@
 module.exports={
   
-  appDisabled:false
-  
+  appDisabled:false,
+  imageCount:12345
   
 }
