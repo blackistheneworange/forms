@@ -7,6 +7,7 @@ var debug=require('debug');
 var cookieParser=require('cookie-parser');
 var session=require('express-session');
 var multer=require('multer');
+require('dotenv').config();
 var upload=multer();
 var auth=require('./routes/authRouter');
 
