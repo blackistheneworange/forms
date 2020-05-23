@@ -1,0 +1,395 @@
+<html>
+
+  <head>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto|Quicksand">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+      header .title{
+        font-size:50px;
+        color:#fff;
+        text-decoration:none;
+
+      }
+      header{
+        font-family:'Bebas Neue',Roboto,sans-serif;
+
+      }
+
+      nav{
+        font-family:'Quicksand',Roboto,sans-serif;
+      }
+
+
+      main{
+        font-family:Roboto,sans-serif;
+
+      }
+
+      main > div{
+        margin-top:50px;
+         transition:opacity 0.3s ease-in;
+      }
+
+
+      .navActive{
+        background-color:#de9516;
+        border-radius:1px;
+
+      }
+      nav div div h4{
+        
+        font-size:1rem;
+        cursor:pointer;
+      }
+
+      .activeBlock{
+
+       display:block;
+
+      }
+
+      .inactiveBlock{
+
+       display:none;
+
+      }
+
+      #Entries{
+
+        overflow-x:scroll;
+      }
+
+      #Entries center{
+        padding:8px;
+      }
+
+      table a{
+        font-size:20px;
+        width:60px;
+        height:24px;
+      }
+
+      #Privileges{
+        margin-top:10%;
+
+
+      }
+      #Privileges center button{
+        padding:20px 50px;
+        margin:20px;
+        font-family:'Oswald',sans-serif;
+        font-size:1.2em;
+
+      }
+
+      .disable{
+        background-color:#a34549;
+        color:white;
+
+      }
+      .delete{
+        background-color:#0fa1b8;
+        color:white;
+      }
+
+      header a{
+        color:#fff;
+      }
+      
+      footer{
+        margin-top:150px;
+      }
+      
+      .pie-head{
+        box-shadow:2px 2px black;
+      }
+      
+      .website a{
+        color:white;
+        font-family:monospace;
+      }
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <header class="container-fluid text-white bg-info">
+
+
+    <div class='row d-flex align-items-center justify-content-between'>
+        <a href="#" class='title m-0 py-2 pl-4'>DASHBOARD</a>
+
+
+
+          <a href='/logout' class='m-0 btn btn-info pr-4'><i class="fa fa-sign-out"></i>  Logout</a>
+    </div>
+
+
+
+
+
+    </header>
+    
+
+
+    <nav class="container-fluid bg-dark p-0 m-0 text-white">
+
+
+      <div class="row text-center p-0 m-0">
+
+        <div class="col-3 p-0 m-0">
+        <h4 class="navItem navActive m-0 p-2">Analysis</h4>
+        </div>
+
+        <div class="col-3 p-0 m-0">
+        <h4 class="navItem m-0 p-2">Entries</h4>
+        </div>
+        
+        <div class="col-3 p-0 m-0">
+          <h4 class="navItem m-0 p-2">Stats</h4>
+        </div>
+
+        <div class="col-3 p-0 m-0">
+        <h4 class="navItem m-0 p-2">Privileges</h4>
+        </div>
+
+      </div>
+
+  </nav>
+  
+  <a href="/" class="btn btn-secondary m-1">Go To Form</a>
+
+
+  <main class='container-fluid'>
+
+
+
+      <div class="activeBlock container" id="Analysis">
+
+            <center><h1 class='lead text-white bg-success p-2 pie-head'>Registration Types</h3></h1>
+
+            <canvas class="mt-4" id="pieChart"></canvas>
+
+            <center class="alert alert-danger pieError" style="display:none">Error Fetching Data</center>
+
+      </div>
+      
+      <div class="inactiveBlock col-12 mx-0 px-0" id="Stats" style="opacity:0">
+        
+        <center class="alert alert-danger statsError" style="display:none">Error Fetching Data</center>
+        
+        <table class="table container">
+          
+          <tbody>
+            
+            <tr>
+              <th>Total Applications Submitted</th>
+              <td id="totalEntriesStat">-</td>
+            </tr>
+            
+            <tr>
+              
+              <th>Total Tickets Booked</th>
+              <td id="totalTicketsStat">-</td>
+            </tr>
+            
+            <tr>
+              <th>Accepted Applications</th>
+              <td id="acceptedApplications">-</td>
+            </tr>
+            
+            <tr>
+              <th>Rejected Applications</th>
+              <td id="rejectedApplications">-</td>
+            </tr>
+            
+            <tr>
+              <th>Unreviewed Applications</th>
+              <td id="notReviewedStat">-</td>
+            </tr>
+            
+          </tbody>
+          
+          
+        </table>
+        
+        
+      </div>
+
+
+      <div class="inactiveBlock col-12 mx-0 px-0" id="Entries" style="opacity:0">
+
+        <center class="alert alert-danger entriesError" style="display:none">Error Fetching Data</center>
+
+        <center>
+
+          <table class="table container table-borderless">
+
+            <tbody>
+
+              <tr class="table-success">
+                <th>Total Applications Submitted</th>
+                <td id="totalEntries">-</td>
+              </tr>
+
+              <tr class="table-success">
+                <th>Total Tickets Booked</th>
+                <td id="totalTickets">-</td>
+              </tr>
+
+              <tr class="table-success">
+                <th>Applications Yet To Be Reviewed</th>
+                <td id="notReviewed">-</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </center>
+
+        <small class="mt-5">*Click on view to view the application/form to reject (or) approve it!</small>
+        <table class="table table-striped table-bordered table-responsive-sm">
+          <caption>List Of Applicants</caption>
+          <thead class="thead-dark">
+            <tr>
+
+              <th scope='col'>#</th>
+              <th scope='col'>Registration Id</th>
+              <th scope='col'>Date</th>
+              <th scope='col'>Name</th>
+              <th scope='col'>Status</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+
+
+
+          </tbody>
+
+
+        </table>
+
+      </div>
+
+
+      <div class="inactiveBlock" id="Privileges" style="opacity:0">
+
+       <center class="alert alert-danger privilegesError" style="display:none">Failed To Perform The Operation</center>
+       
+       
+        <div class='alert'></div>
+
+        <center><button class="btn disable" data-toggle="modal" data-target="#applicationDisable">Disable Application/Form</button></center>
+
+        <center><button class="btn delete" data-toggle="modal" data-target="#entriesDelete">Remove All Entries</button></center>
+
+
+      </div>
+
+
+    </main>
+
+
+    <!--Modal/Pop up-->
+
+
+    <!-- Modal -->
+<div class="modal fade" id="applicationDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Your Action</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body disable-msg">
+        Disabling the Application will prevent Users from viewing or submitting applications. Are you sure you want to disable this form/application ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary disableApplication" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete All Entries Pop Up-->
+
+<div class="modal fade" id="entriesDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Your Action</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete all the entries for this application/form?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary deleteAllEntries" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+       <footer class="page-footer bg-dark p-4">
+
+     <div class="row d-flex justify-content-center">
+
+       <a class="btn btn-light m-3" href="https://github.com/blackistheneworange/forms"><i class="fa fa-github"></i> Github</a>
+
+       <a class="btn btn-light m-3" href="https://www.linkedin.com/in/hariharanpr">Linked <i class="fa fa-linkedin"></i></a>
+
+     </div>
+
+     <div class="row d-flex justify-content-center text-white">
+
+       <span class="">Predators &copy; 2020</span>
+
+     </div>
+
+     <div class="row p-1 d-flex justify-content-center">
+
+       <span class="website"><a href="http://www.predators.in" class="btn btn-secondary">Visit Our Website</a></span>
+
+     </div>
+
+   </footer>
+
+
+
+    <script>
+
+      var disabledOption=<%=disabledOption%>
+
+    </script>
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/popper.js/dist/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="/js/dashboard.js"></script>
+
+  </body>
+
+</html>

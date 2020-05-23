@@ -1,0 +1,134 @@
+<html>
+
+  <head>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+    <title>Success</title>
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto|Quicksand">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+      header .title{
+        font-size:50px;
+       color:#fff;
+       text-decoration:none;
+
+      }
+      header{
+        font-family:'Bebas Neue',Roboto,sans-serif;
+
+      }
+
+      header a{
+        color:#fff;
+      }
+
+
+      .website a{
+        color:white;
+        font-family:monospace;
+      }
+
+      footer{
+        margin-top:150px;
+      }
+      main{
+        margin-top:100px;
+      }
+      
+      main div{
+        margin-top:50px;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <header class="container-fluid text-white bg-info">
+
+
+    <div class='row d-flex align-items-center justify-content-between'>
+        <a href="/" class='title m-0 py-2 pl-4'>Code-A-Snap</a>
+
+          <% if(logged){ %>
+
+          <a href="/admin/dashboard" class="m-0 btn btn-info pr-4"><i class="fa fa-user"></i>   Dashboard</a>
+
+          <% } else { %>
+
+          <a href='/login' class='m-0 btn btn-info pr-4'><i class="fa fa-sign-in"></i> Admin Login</a>
+
+          <% } %>
+    </div>
+
+
+   </header>
+
+   <small class="text-muted ml-2">*This is not an actual event</small>
+
+    <main class="jumbotron container">
+
+    <% if(deleted===true){ %>
+
+    <h1>Application deleted successfully.  The Application will not be processed further. Thank you for taking your time!</h1>
+
+    <% } else { %>
+
+    <h1>You have Successfully Registered for the Event <b>Code-A-Snap</b></h1>
+
+
+    <div>
+    <p class="mb-0">Registration ID - <b><%=id%></b></p>
+    <small class="text-muted mt-0">*Note down the ID for future purposes.</small>
+    </div>
+
+
+    <div>
+    <p style="width:100%">Use the following URL to track your application - <a class="btn btn-success" href="<%=link%>"><%=url%></a> </p>
+
+    </div>
+
+    <% } %>
+
+    </main>
+
+     <footer class="page-footer bg-dark p-4">
+
+     <div class="row d-flex justify-content-center">
+
+       <a class="btn btn-light m-3" href="https://github.com/blackistheneworange/forms"><i class="fa fa-github"></i> Github</a>
+
+       <a class="btn btn-light m-3" href="https://www.linkedin.com/in/hariharanpr">Linked <i class="fa fa-linkedin"></i></a>
+
+     </div>
+
+     <div class="row d-flex justify-content-center text-white">
+
+       <span class="">Predators &copy; 2020</span>
+
+     </div>
+
+     <div class="row p-1 d-flex justify-content-center">
+
+       <span class="website"><a href="http://www.predators.in" class="btn btn-secondary">Visit Our Website</a></span>
+
+     </div>
+
+   </footer>
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/popper.js/dist/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src=""></script>
+
+  </body>
+
+</html>

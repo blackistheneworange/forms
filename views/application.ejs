@@ -1,0 +1,291 @@
+<html>
+
+  <head>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    
+    <title>Application/Form Preview</title>
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto|Quicksand">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+      header .title{
+        font-size:50px;
+        color:#fff;
+        text-decoration:none;
+
+      }
+      header{
+        font-family:'Bebas Neue',Roboto,sans-serif;
+
+      }
+
+      header a{
+        color:#fff;
+      }
+
+      img{
+        width:301px;
+        height:200px;
+      }
+
+      .decider{
+        font-family:Roboto,Arial,sans-serif;
+
+      }
+
+      #accept{
+
+        background-color:#38cf7c;
+        color:white;
+        font-weight:bold;
+
+      }
+
+      #reject{
+        background-color:#c42530;
+        color:white;
+        font-weight:bold;
+
+      }
+
+      .rejectReason{
+        outline:none;
+        border:1px solid black;
+        border-radius:12px;
+        box-shadow:0px 0px 2px 1px #aaaaaa;
+        width:160%;
+      }
+
+      .alert-danger{
+        display:none;
+        transition:opacity 0.5s ease;
+      }
+      
+      main,.jumbotron{
+        margin-top:100px;
+      }
+
+      footer{
+        margin-top:100px;
+        
+        
+      }
+
+      .website a{
+        color:white;
+        font-family:monospace;
+      }
+
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <header class="container-fluid text-white bg-info">
+
+
+    <div class='row d-flex align-items-center justify-content-between'>
+        <a href="/" class='title m-0 py-2 pl-4'>Code-A-Snap</a>
+
+         <% if(logged){ %>
+         
+         <a href="/admin/dashboard" class="m-0 btn btn-info pr-4"><i class="fa fa-user"></i>   Dashboard</a>
+         
+         <% } else { %>
+
+          <a href='/login' class='m-0 btn btn-info pr-4'><i class="fa fa-sign-in"></i> Admin Login</a>
+          
+        <% } %>
+        
+    </div>
+
+
+   </header>
+   
+   <small class="text-muted ml-2">*This is not an actual event</small>
+
+
+   <% if(status==="Rejected"){ %>
+      
+      
+      <div class="jumbotron container">
+        
+        <h1 class="p-3" style="font-size:1.6rem font-weight:bold">Your Application Has Been Rejected Due To The Following Reason :</h1>
+        <br>
+        
+        <h2 class="lead ml-4" style=font-size:1.4rem><%=rejectReason%></h2>
+        
+      </div>
+      
+   
+   <% } else { %>
+   
+   
+   <main class="container">
+
+     <center><h2 class="mt-4">Application Status</h2></center>
+
+    <div class="table-responsive-sm mt-3">
+     <table class="table table-bordered table-striped table-hover">
+
+       <thead>
+
+         <tr>
+           <th colspan="2"><center><%=status%></center></th>
+         </tr>
+       </thead>
+
+       <tbody>
+
+         <tr>
+
+           <th scope="row">Registration ID</th>
+           <td class="regId"><%=id%></td>
+
+         </tr>
+
+         <tr>
+
+           <th scope="row">Name</th>
+
+           <td><%=name%></td>
+
+         </tr>
+
+         <tr>
+
+           <th scope="row">Email</th>
+           <td><%=email%></td>
+         </tr>
+
+         <tr>
+
+           <th scope="row">Mobile</th>
+           <td><%=mobile%></td>
+
+         </tr>
+
+         <tr>
+
+           <th scope="row">Verification ID</th>
+           <td><img class="img-responsive" src="<%=image%>" alt="Verification ID"/></td>
+         </tr>
+
+         <tr>
+
+           <th scope="row">Registration Type</th>
+           <td><%=type%></td>
+
+         </tr>
+
+         <tr>
+
+           <th scope="row">Tickets</th>
+           <td><%=tickets%></td>
+
+         </tr>
+
+
+       </tbody>
+
+     </table>
+
+     <% if(status==="Under Review"){ %>
+
+     <div class="row mt-3 mb-5 decider">
+
+
+      <div class="col-12">
+       <button id="reject" class="btn w-100 text-center" data-toggle="modal" data-target="#rejectModal">Delete Application</button>
+      </div>
+      
+      <div class="alert alert-danger" style="display:none">Failed To Delete The Application. Try Again Later!</div>
+
+
+     </div>
+     
+  </div>
+     
+     <% } else { %>
+     
+     <small class="text-muted">*Accepted Applications Cannot Be Deleted</small>
+     
+     <% } %>
+
+ 
+ </main>
+
+ <% if(status==="Under Review"){%>
+
+
+
+<div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="reject" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirm Your Action</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p class="mt-2">Are you sure you want to delete this application? Application once deleted cannot be reverted back!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rejectReject" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary rejectConfirm">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <% } %>
+  
+<% } %>
+
+ 
+   <footer class="page-footer bg-dark p-4">
+
+     <div class="row d-flex justify-content-center">
+
+       <a class="btn btn-light m-3" href="https://github.com/blackistheneworange/forms"><i class="fa fa-github"></i> Github</a>
+
+       <a class="btn btn-light m-3" href="https://www.linkedin.com/in/hariharanpr">Linked <i class="fa fa-linkedin"></i></a>
+
+     </div>
+
+     <div class="row d-flex justify-content-center text-white">
+
+       <span class="">Predators &copy; 2020</span>
+
+     </div>
+
+     <div class="row p-1 d-flex justify-content-center">
+
+       <span class="website"><a href="http://www.predators.in" class="btn btn-secondary">Visit Our Website</a></span>
+
+     </div>
+
+   </footer>
+
+
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/popper.js/dist/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/js/application.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,232 @@
+<html>
+
+  <head>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto|Quicksand">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+    
+    *{
+      box-sizing:border-box;
+      font-size:1em;
+    }
+    
+    body{
+      background-color:#f3f3f3;
+      min-height:100vh;
+      
+    }
+
+      header .title{
+        font-size:50px;
+        color:#fff;
+        text-decoration:none;
+
+      }
+      header{
+        font-family:'Bebas Neue',Roboto,sans-serif;
+
+      }
+
+      header a{
+        color:#fff;
+      }
+      
+      main{
+        
+        box-shadow:0 0 3px 3px #9e9aa1;
+        border-radius:20px;
+        width:50%;
+        margin:20% auto;
+        
+      }
+      
+      
+      .website a{
+        color:white;
+        font-family:monospace;
+      }
+      
+      footer{
+        
+      }
+      
+      .username,.password{
+        
+        width:100%;
+        height:40px;
+        margin:30px auto;
+        position:relative;
+        
+      }
+      .username p,.password p{
+        
+        z-index:10;
+        transform:translate(5%,-100%);
+        pointer-events:none;
+        font-size:1.2rem;
+        transition:all 0.5s ease;
+        
+        
+      }
+      input[type=text],input[type=password]{
+        outline:none;
+        border:1px solid black;
+        width:100%;
+        height:100%;
+        padding:10px 10px 0 10px;
+        
+        border-radius:16px;
+      }
+      
+      
+      
+      main h1{
+        font-size:2rem;
+        font-weight:bold;
+        
+      }
+      .fa-user{
+        font-size:2rem;
+      }
+      
+      main p,input{
+        font-size:1rem;
+      }
+      
+      @media screen and (max-width:700px){
+        
+        
+      main{
+        width:100%;
+      }
+        
+      input{
+        
+        
+      }
+      .username,.password{
+        width:100%;
+      }
+        
+        
+      }
+      
+      .form-group small{
+        position:absolute;
+        top:36px;
+        left:10px;
+      }
+      
+      input[type=submit]{
+        font-family:Roboto,sans-serif;
+        font-weight:700;
+      }
+  
+    
+
+    </style>
+
+  </head>
+
+  <body class="">
+
+    <header class="container-fluid text-white bg-info">
+
+
+    <div class='row d-flex align-items-center justify-content-between'>
+        <a href="/" class="title py-2 pl-4 m-0">Code-A-Snap</a>
+        
+
+
+
+          <a href='/login' class='m-0 btn btn-info pr-4'><i class="fa fa-sign-in"></i> Admin Login</a>
+    </div>
+
+
+   </header>
+   
+   <small class="text-muted ml-2">*This is not an actual event</small>
+   
+   
+   <main class="bg-light">
+     
+     
+     <a class="btn btn-secondary" href="/">Go Back</a>
+    
+     <div class="p-4 d-flex flex-column align-items-center">
+       
+       <h1><i class="mb-2 fa fa-user"></i> ADMIN LOGIN</h1>
+     
+       
+         
+         <form>
+         
+         <div class="username form-group">
+             <input class="form-control" type="text" name="username" aria-describedBy="#usernameHelp"/>
+             <p class="text-muted">Username</p>
+             
+             <small id="usernameHelp" class="form-text text-muted">Type <b>root</b> as the username*</small>
+         </div>
+       
+       
+       
+          <div class="password form-group">
+             <input class="form-control" type="password" name="password" area-describedBy="#passwordHelp"/>
+             <p class="text-muted">Password</p>
+             <small id="passwordHelp" class="form-text text-muted">Type <b>root</b> as the password*</small>
+          </div>
+          
+          
+          <input type="submit" class="btn btn-info w-100 mt-3" value="Login"/>
+       
+          <div class="mt-2 alert alert-danger" style="display:none"></div>
+     
+     
+     </div>
+     
+     
+     
+     
+   </main>
+   
+
+   <footer class="page-footer bg-dark p-4">
+
+     <div class="row d-flex justify-content-center">
+
+       <a class="btn btn-light m-3" href="https://github.com/blackistheneworange/forms"><i class="fa fa-github"></i> Github</a>
+
+       <a class="btn btn-light m-3" href="https://www.linkedin.com/in/hariharanpr">Linked <i class="fa fa-linkedin"></i></a>
+
+     </div>
+
+     <div class="row d-flex justify-content-center text-white">
+
+       <span class="">Predators &copy; 2020</span>
+
+     </div>
+
+     <div class="row p-1 d-flex justify-content-center">
+
+       <span class="website"><a href="http://www.predators.in" class="btn btn-secondary">Visit Our Website</a></span>
+
+     </div>
+
+   </footer>
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/popper.js/dist/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+
+    <script src=""></script>
+
+  </body>
+
+</html>

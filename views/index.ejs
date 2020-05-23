@@ -1,0 +1,250 @@
+<html>
+
+  <head>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+    <title>Code-A-Snap - Registration</title>
+
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto|Quicksand">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+      header .title{
+        font-size:50px;
+        color:#fff;
+        text-decoration:none;
+
+      }
+      header{
+        font-family:'Bebas Neue',Roboto,sans-serif;
+
+      }
+
+      header a{
+        color:#fff;
+      }
+
+
+      .website a{
+        color:white;
+        font-family:monospace;
+      }
+
+      footer{
+        margin-top:150px;
+      }
+      main{
+        margin-top:100px;
+      }
+      
+      main .row h1{
+        font-size:1.5rem;
+        text-align:center;
+        font-weight:bold;
+      }
+      
+      .form-control,.custom-file-label{
+        border-radius:50px;
+      }
+      label{
+        margin-left:10px;
+      }
+      
+      img{
+        width:301px;
+        height:200px;
+      }
+      .fileName{
+        padding:5px 0 5px 2px;
+      }
+      .form-text{
+        margin-top:0;
+        margin-left:4%;
+        padding:0;
+      }
+      
+      .alert-danger{
+        display:none;
+        margin:5px 0 0 5px;
+      }
+      
+      .form-group{
+        margin-top:20px;
+      }
+      
+      label{
+        transition:color 0.5s ease;
+      }
+      
+      
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <header class="container-fluid text-white bg-info">
+
+
+    <div class='row d-flex align-items-center justify-content-between'>
+        <a href="/" class='title m-0 py-2 pl-4'>Code-A-Snap</a>
+
+          <% if(logged){ %>
+
+          <a href="/admin/dashboard" class="m-0 btn btn-info pr-4"><i class="fa fa-user"></i>   Dashboard</a>
+
+          <% } else { %>
+
+          <a href='/login' class='m-0 btn btn-info pr-4'><i class="fa fa-sign-in"></i> Admin Login</a>
+
+          <% } %> 
+    </div>
+
+
+   </header>
+
+    <small class="text-muted ml-2">*This is not an actual event</small>
+
+    <main class="container-fluid">
+
+        
+        <h1 class="text-center">Registration Form</h1>
+        
+      <div class="row mt-4 d-flex justify-content-center">
+      
+    
+      <form class="col-12 col-sm-10 col-md-8 p-4 bg-light">
+        
+        <div class="form-group">
+
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" id="name" area-describedBy="nameHelp" placeholder="Enter your full name..."/>
+        <small class="form-text text-muted" id="nameHelp"></small>
+        <div class="name alert alert-danger"></div>
+        
+        </div>
+        
+        <div class="form-group">
+
+        <label for="mobile">Mobile</label><input type="number" name="mobile" class="form-control" id="mobile" aria-describedBy="mobileHelp" placeholder="Enter your 10-digit mobile number..."/>
+        <small id="mobileHelp" class="form-text text-muted"></small>
+        <div class="mobile alert alert-danger"></div>
+        
+        </div>
+        
+        <div class="form-group">
+
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="form-control" aria-describedBy="emailHelp" placeholder="Enter your email address..."/>
+        <small class="form-text text-muted" id="emailHelp"></small>
+        <div class="email alert alert-danger"></div>
+        
+        </div>
+        
+        <div class="form-group">
+          
+          <label>Upload Verification ID</label>
+          
+          <div class="fileUploader" style="width:110%;overflow:hidden;margin-left:-10px">
+          
+          
+          <label class="btn border-top" for="inputProof" style="float:left;width:26%;background-color:#e9ecef;border:1px solid #ced4da;border-radius:50px 0 0 50px;z-index:1;cursor:pointer;margin-bottom:0">Browse</label>
+          
+            <div style="float:left;border-top:1px solid #ced4da;border-right:1px solid #ced4da;border-bottom:1px solid #ced4da;width:68%;height:38px;transform:translateX(-5%);border-radius:0 50px 50px 0;background-color:white;z-index:-1"><p class="text-muted ml-1 fileName" style="overflow:scroll">Choose File...</p></div>
+            
+            
+            <small class="form-text text-muted" id="proof-help" style="clear:both">Only JPEG/PNG/JPG formats are accepted</small>
+            <div class="proof alert alert-danger" style="width:91%"></div>
+          
+          </div>
+          
+          
+          <input type="file" name="proof"  aria-describedBy="proof-help" id="inputProof" style="height:0.1px;opacity:0;width:0.1px;"/>
+
+          
+          
+        </div>
+        
+        
+        <div class="form-group">
+
+        <label for="type">Registration Type</label>
+
+        <select name="type" class="form-control" id="type" aria-describedBy="typeHelp">
+
+          <option>Self</option>
+          <option>Group</option>
+          <option>Corporate</option>
+          <option>Others</option>
+          <option disabled selected="selected" style="display:none" class="text-muted">Select a registration type...</option>
+
+        </select>
+        <small class="form-text text-muted" id="typeHelp"></small>
+        <div class="type alert alert-danger"></div>
+
+        </div>
+
+
+      <div class="form-group" style="display:none" id="tickets">
+        <label for="ticket">No. Of Tickets</label>
+        <input type="number" class="form-control" id="ticket" name="tickets" aria-describedBy="ticketHelp" placeholder="Enter a minimum of 2 tickets..."/>
+        <small class="form-text text-muted" id="ticketHelp"></small>
+        <div class="tickets alert alert-danger"></div>
+        
+      </div>
+
+
+
+      <input class="btn btn-info mt-4 w-100 text-bold" type="submit" value="Submit"/>
+      
+      <div class="mt-4 alert alert-danger formError"></div>
+
+
+      </form>
+      
+      
+      </div>
+    
+
+    </main>
+
+
+   <footer class="page-footer bg-dark p-4">
+
+     <div class="row d-flex justify-content-center">
+
+       <a class="btn btn-light m-3" href="https://github.com/blackistheneworange/forms"><i class="fa fa-github"></i> Github</a>
+
+       <a class="btn btn-light m-3" href="https://www.linkedin.com/in/hariharanpr">Linked <i class="fa fa-linkedin"></i></a>
+
+     </div>
+
+     <div class="row d-flex justify-content-center text-white">
+
+       <span class="">Predators &copy; 2020</span>
+
+     </div>
+
+     <div class="row p-1 d-flex justify-content-center">
+
+       <span class="website"><a href="http://www.predators.in" class="btn btn-secondary">Visit Our Website</a></span>
+
+     </div>
+
+   </footer>
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/popper.js/dist/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/js/index.js"></script>
+
+  </body>
+
+</html>

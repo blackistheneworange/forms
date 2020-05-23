@@ -1,0 +1,294 @@
+<html>
+
+  <head>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+    <title>Application/Form Preview</title>
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto|Quicksand">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+
+      header .title{
+        font-size:50px;
+       color:#fff;
+       text-decoration:none;
+
+      }
+      header{
+        font-family:'Bebas Neue',Roboto,sans-serif;
+
+      }
+
+      header a{
+        color:#fff;
+      }
+
+
+      .website a{
+        color:white;
+        font-family:monospace;
+      }
+
+      footer{
+        margin-top:150px;
+      }
+      main{
+        margin-top:100px;
+      }
+      form{
+        margin-top:25px;
+      }
+      table{
+        overflow:scroll;
+      
+      }
+      img{
+        width:301px;
+        height:200px;
+      }
+    
+      .error{
+        border:1px solid red;
+      }
+      .alert-danger{
+        display:none;
+      }
+      input:hover{
+        outline:none;
+      }
+      input.form-control,select.form-control{
+        width:100%;
+        background-color:#f3f3f3;
+        border-radius:20px;
+        padding:10px;
+      }
+      
+      
+    
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <header class="container-fluid text-white bg-info">
+
+
+    <div class='row d-flex align-items-center justify-content-between'>
+        <a href="/" class='title m-0 py-2 pl-4'>Code-A-Snap</a>
+
+          <% if(logged){ %>
+
+          <a href="/admin/dashboard" class="m-0 btn btn-info pr-4"><i class="fa fa-user"></i>   Dashboard</a>
+
+          <% } else { %>
+
+          <a href='/login' class='m-0 btn btn-info pr-4'><i class="fa fa-sign-in"></i> Admin Login</a>
+
+          <% } %>
+    </div>
+
+
+   </header>
+
+   <small class="text-muted ml-2">*This is not an actual event</small>
+
+
+    <main class="container">
+
+      <center class="lead m-0 p-0 "><h1>Form Preview</h1></center>
+
+      <center><small class="m-0 p-0 text-muted preview-note">Preview your form before submitting</small></center>
+      
+      <center><h2 class="editorText mb-0 mt-2 p-2 bg-dark text-white" style="display:none;border-radius:20px">Editor Mode</h2></center>
+
+      <form class="mt-0 form table-responsive">
+       
+      <table class="mt-0 table table-bordered table-striped">
+
+        <tr>
+
+
+        <th><label>Name</label></th>
+
+        <td><%=name%></td>
+
+        <td><input type="text" name="name" class="block form-control" value="<%=name%>"/>
+        
+        
+        <div class="name alert alert-danger mt-2 mb-0"></div>
+        
+        </td>
+
+        </tr>
+
+
+        <tr>
+
+        <th><label>Mobile</label></th>
+        <td><%=mobile%></td>
+
+
+        <td><input type="number" name="mobile" value="<%=mobile%>" class="block form-control"/>
+        <div class="mobile alert alert-danger mb-0 mt-2"></div>
+        
+        </td>
+
+        </tr>
+
+
+        <tr>
+
+        <th><label>Email</label></th>
+        <td><%=email%></td>
+
+        <td><input type="text" name="email" class="block form-control" value="<%=email%>"/>
+        <div class="email alert alert-danger mt-2 mb-0"></div>
+        
+        </td>
+
+       </tr>
+
+
+
+       <tr>
+
+        <th>Verification ID</th>
+
+        <td><img class="proofImg" src="<%=image%>" alt="Verification ID"/>
+         
+        <div class="fileUploadButton" style="display:none">
+        <span class="proofUrl" style="display:none"><%=image%></span>
+          
+          <hr>
+
+        <div class="form-group mt-2 ml-1">
+          
+          
+          <label>Upload New Verification ID</label>
+
+          <div class="fileUploader" style="width:110%;overflow:hidden">
+
+
+          <label class="btn border-top" for="inputProof" style="float:left;width:26%;background-color:#e9ecef;border:1px solid #ced4da;border-radius:50px 0 0 50px;z-index:1;cursor:pointer;margin-bottom:0">Browse</label>
+
+            <div style="float:left;border-top:1px solid #ced4da;border-right:1px solid #ced4da;border-bottom:1px solid #ced4da;width:68%;height:38px;transform:translateX(-5%);border-radius:0 50px 50px 0;background-color:white;z-index:-1"><p class="text-muted ml-1 mt-2 fileName" style="overflow:scroll">Choose File...</p></div>
+
+
+            <small class="form-text text-muted ml-1" id="proof-help" style="clear:both">Only JPEG/PNG/JPG formats are accepted</small>
+            
+            <div class="proof alert alert-danger mt-2 mb-0" style="width:91%"></div>
+
+          </div>
+          </div>
+          </td>
+
+
+          <input type="file" name="proof"  aria-describedBy="proof-help" id="inputProof" style="height:0.1px;opacity:0;width:0.1px;"/>
+
+
+       </div>
+
+      </tr>
+
+      <tr>
+
+        <th><label>Registration Type</label></th>
+
+        <td><%=type%></td>
+        
+        <div class="form-group">
+
+        <td><select name="type" class="block form-control">
+         
+          <option <% if(type==='Self'){ %> selected="selected" <% } %>>Self</option>
+          <option <% if(type==='Group'){ %> selected="selected" <% } %>>Group</option>
+          <option <% if(type==='Corporate'){ %> selected="selected" <% } %>>Corporate</option>
+          <option <% if(type==='Others'){ %> selected="selected" <% } %>>Others</option>
+
+        </select>
+        
+        <div class="type alert alert-danger mb-0 mt-2"></div>
+        
+        </td>
+        
+        </div>
+
+        
+        
+
+      </tr>
+
+
+      <tr>
+
+        <th><label id="tickets">No. Of Tickets</label></th>
+        <td class="ticketValue"><%=tickets%></td>
+
+        <td class="ticketWrap"><input type="number" name="tickets" class="block form-control" value="<%=tickets%>"/>
+        
+        <div class="alert alert-danger tickets mt-2 mb-0"></div>
+        
+        </td>
+
+      </tr>
+      
+      
+
+      </table>
+
+      <div class="row mt-3 d-flex justify-content-around">
+
+      <button class="col-5 p-1 btn btn-primary update" type="button" onclick="updator()" style="display:none">Save</button>
+
+        <button class="col-5 p-1 btn btn-primary edit" type="button" onclick="editor()">Edit</button>
+
+       <input class="col-5 p-1 btn btn-success" type="submit" value="Submit"/>
+
+      </div>
+
+  </form>
+  
+      <div class="alert alert-warning msg" style="display:none"></div>
+
+    </main>
+
+   <footer class="page-footer bg-dark p-4">
+
+     <div class="row d-flex justify-content-center">
+
+       <a class="btn btn-light m-3" href="https://github.com/blackistheneworange/forms"><i class="fa fa-github"></i> Github</a>
+
+       <a class="btn btn-light m-3" href="https://www.linkedin.com/in/hariharanpr">Linked <i class="fa fa-linkedin"></i></a>
+
+     </div>
+
+     <div class="row d-flex justify-content-center text-white">
+
+       <span class="">Predators &copy; 2020</span>
+
+     </div>
+
+     <div class="row p-1 d-flex justify-content-center">
+
+       <span class="website"><a href="http://www.predators.in" class="btn btn-secondary">Visit Our Website</a></span>
+
+     </div>
+
+   </footer>
+
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/popper.js/dist/popper.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/js/preview.js"></script>
+
+  </body>
+
+</html>
