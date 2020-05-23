@@ -261,7 +261,7 @@ router.route('/upload')
      
      
      
-     res.send({fileName:'../public/images/'+req.file.filename});
+     res.send({fileName:'images/'+req.file.filename});
      
    })
    
