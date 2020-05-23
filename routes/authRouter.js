@@ -89,7 +89,7 @@ exports.route=function(router){
      
      
      
-  router.route('/signup')
+ /* router.route('/signup')
     .post((req,res)=>{
       
       var {username,password}=req.body;
@@ -114,7 +114,7 @@ exports.route=function(router){
       })
       
       
-    })
+    })*/
 }
 
 exports.attachUser=function(req,res,next){
