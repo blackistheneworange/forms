@@ -10,7 +10,7 @@ const storage=multer.diskStorage({
   
   destination:(req,file,cb)=>{
     
-    cb(null,"./public/images");
+    cb(null,"public/images");
     
   },
   filename:(req,file,cb)=>{
@@ -261,7 +261,7 @@ router.route('/upload')
      
      
      
-     res.send({fileName:'/images/'+req.file.filename});
+     res.send({fileName:'public/images/'+req.file.filename});
      
    })
    
