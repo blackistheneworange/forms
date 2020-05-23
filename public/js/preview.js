@@ -290,7 +290,7 @@ if(ext===null){
             contentType:false,
             success:function(res){
               
-              proofImg.src='/'+res.fileName;
+              proofImg.src=res.fileName;
               
               document.querySelector(".fileName").innerHTML=proof.value;
               imageError=false;

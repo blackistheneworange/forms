@@ -34,7 +34,7 @@ var auth=require('./routes/authRouter');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname+'/public'));
+app.use(express.static('public'));
 //app.use(upload.array());
 app.use(session({secret:'test',resave:true,saveUninitialized:false}))
 app.use(cookieParser());
