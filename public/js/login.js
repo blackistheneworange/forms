@@ -33,28 +33,22 @@ document.querySelector("form").addEventListener("submit",(e)=>{
   
   var errBox=document.querySelector(".alert");
   
-  $.ajax({
-    
-    method:"POST",
-    url:"/login",
-    data:data,
-    success:function(res){
-     errBox.style.display="none";
-      window.location.href="/admin/dashboard";
-      
-    },
-    
-    error:function(error){
-      
-      var res=JSON.parse(error.responseText);
-      
-      errBox.style.display="block";
-      errBox.innerHTML=res.err;
-    },
-    
-    dataType:"json"
+  axios({
+    method:'post',
+    url:'login',
+    data:data
     
   })
+  .then((res)=>{
+    errBox.style.display="none";
+    window.location.href="/admin/dashboard";
+    
+  },(error)=>{
+    
+    errBox.style.display="block";
+    errBox.innerHTML=error.response.data.err;
+  })
+  
   
   }
   
