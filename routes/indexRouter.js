@@ -6,7 +6,9 @@ var config=require('../bin/config');
 var cloud =require('@google-cloud/storage');
 var serviceKey=require('../bin/keys.json')
 const {Storage}=cloud;
-var uploadImage=require('../bin/cloudUploadHelper').uploadImage
+var {uploadImage}=require('../bin/cloudUploadHelper');
+
+
 var router=express.Router();
 
 
