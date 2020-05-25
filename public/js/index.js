@@ -97,7 +97,9 @@ if(ext===null){
           $.ajax({
             method:'POST',
             url:'/upload',
-            
+            headers:{
+              email:document.querySelector("input[name=email]").value.split('@')[0]
+            },
             data:formData,
            cache:false,
            processData:false,

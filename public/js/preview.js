@@ -285,6 +285,9 @@ if(ext===null){
           $.ajax({
             method:'POST',
             data:formData,
+            headers:{
+              email:document.querySelector("input[name=email]").value.split('@')[0]
+            },
             url:'/upload',
             processData:false,
             contentType:false,

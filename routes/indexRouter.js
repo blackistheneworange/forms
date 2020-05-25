@@ -3,10 +3,28 @@ var multer=require('multer');
 var path=require('path');
 var Events=require('../models/eventModel');
 var config=require('../bin/config');
+var cloud =require('@google-cloud/storage');
+var serviceKey=require('../bin/keys.json')
+const {Storage}=cloud;
+var uploadImage=require('../bin/cloudUploadHelper').uploadImage
 var router=express.Router();
 
 
-const storage=multer.diskStorage({
+
+/*const storage=new Storage({
+  keyFilename:serviceKey,
+  projectId:"forms-images"
+})
+
+var storage=new Storage({
+  projectId:'forms-images',
+  keyFilename:serviceKey
+})
+
+var myBucket=storage.bucket('forms-images-store');
+
+
+/*const storage=multer.diskStorage({
   
   destination:(req,file,cb)=>{
     
@@ -16,26 +34,36 @@ const storage=multer.diskStorage({
   filename:(req,file,cb)=>{
     
     var alteredName="";
-    var imgCount=config.imageCount;
     
+    var imgCount=config.imageCount;
+    if(req.headers.name!==""){
+      alteredName=req.headers.email;
+    }
+    else{
       alteredName=imgCount.toString();
       config.imageCount++;
+    }
     
     
     
     var ext=file.mimetype.split('/')[1];
     
-    cb(null,"form"+alteredName+`.${ext}`);
+    cb(null,"form-"+alteredName+`.${ext}`);
   }
   
   
-});
+});*/
 
 
 
 
 
-const upload=multer({storage:storage})
+const upload=multer({
+  storage:multer.memoryStorage(),
+  limits:{
+    fileSize:5*1024*1024
+  }
+})
 
 router.route('/')
    .get((req,res,next)=>{
@@ -253,11 +281,32 @@ router.delete('/delete/:id',(req,res)=>{
   
   
 router.route('/upload')
-   .post(upload.single('proof'),(req,res)=>{
+   .post(upload.single('proof'),async (req,res)=>{
      
      
+     var fileName="";
+     var ext=req.file.mimetype.split('/')[1];
+     if(req.headers.email!==""){
+       fileName=req.headers.email+'-'+Date.now()+`.${ext}`;
+     }
+     else{
+       fileName=config.imageCount+'-'+Date.now()+`.${ext}`;
+     }
      
-     res.send({fileName:'images/'+req.file.filename});
+     
+     try {
+    const myFile = req.file
+    const imageUrl = await uploadImage(myFile,fileName)
+  
+    res.status(200).json({fileName:imageUrl})
+    
+  } 
+  catch(error) {
+    res.status(401).send({})
+   
+  }
+     
+   //  res.send({fileName:'images/'+req.file.filename});
      
    })
    
