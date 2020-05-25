@@ -31,11 +31,7 @@ const storage=multer.diskStorage({
   
 });
 
-const fileTypes=(req,file,cb)=>{
-  
-  
-  
-}
+
 
 
 
